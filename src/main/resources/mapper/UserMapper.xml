@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.situ.anime.mapper.UserMapper">
+
+    <insert id="insert">
+        INSERT INTO tb_user
+        (id, avatar, username, password, phone, ip_address, email, user_group, status, register_time)
+        VALUES
+        (id=#{id}, avatar=#{avatar}, username=#{username}, password=#{password}, phone=#{phone}, ip_address=#{ipAddress}, email=#{email}, user_group=#{userGroup}, status=#{status}, register_time=#{registerTime})
+    </insert>
+    <select id="selectById" resultType="com.situ.anime.domain.entity.User">
+        SELECT * FROM tb_user
+        WHERE id=#{id}
+    </select>
+    <select id="search" resultType="com.situ.anime.domain.entity.User">
+        SELECT * FROM tb_user
+        <where>
+            <if test="phone!=null and phone.length>0">
+                AND phone=#{phone}
+            </if>
+        </where>
+    </select>
+    <select id="selectByUsername" resultType="com.situ.anime.domain.entity.User">
+        SELECT * FROM tb_user
+        WHERE username=#{username}
+    </select>
+</mapper>
