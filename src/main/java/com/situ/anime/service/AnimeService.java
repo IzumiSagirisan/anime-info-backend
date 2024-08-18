@@ -19,4 +19,7 @@ public interface AnimeService {
     Anime searchById(Integer id);
 
     Integer editAnime(Anime anime) throws Exception;
+
+    // 删除新番
+    Integer removeAnime(Integer id) throws Exception;
 }

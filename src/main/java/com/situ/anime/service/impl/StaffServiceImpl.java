@@ -18,4 +18,19 @@ public class StaffServiceImpl implements StaffService {
     public Staff searchById(Integer id) {
         return staffMapper.selectById(id);
     }
+
+    @Override
+    public Integer addStaff(Staff staff) throws Exception {
+        return staffMapper.insert(staff);
+    }
+
+    @Override
+    public Integer editStaff(Staff staff) throws Exception {
+        return staffMapper.update(staff);
+    }
+
+    @Override
+    public Integer removeStaff(Integer id) throws Exception {
+        return staffMapper.delete(id);
+    }
 }

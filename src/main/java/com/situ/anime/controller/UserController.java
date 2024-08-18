@@ -2,6 +2,7 @@ package com.situ.anime.controller;
 
 import com.situ.anime.domain.vo.Result;
 import com.situ.anime.domain.vo.UserVo;
+import com.situ.anime.service.CommentService;
 import com.situ.anime.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+    private final CommentService commentService;
 
     /**
      * 实现用户注册
@@ -29,21 +31,6 @@ public class UserController {
             return Result.error(e.getMessage());
         }
     }
-
-    /**
-     * 实现用户登录
-     * TODO: 使用Springboot Security
-     * TODO: 密码长度格式验证3-16位
-     * TODO: 用户是否被禁用
-     */
-//    @RequestMapping("/login")
-//    public Result login(@RequestBody UserVo user) {
-//        try {
-//            return Result.success(userService.login(user));
-//        } catch (Exception e) {
-//            return Result.error(e.getMessage());
-//        }
-//    }
 
     /**
      * 实现用户修改密码
@@ -62,9 +49,8 @@ public class UserController {
 
     /**
      * 实现用户注销功能
-     * TODO: 重新用路径参数写
      */
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public Result removeUser(@RequestBody UserVo userVo){
         try{
             return Result.success(userService.removeUser(userVo));
@@ -84,4 +70,29 @@ public class UserController {
             return Result.error(e.getMessage());
         }
     }
+
+    /**
+     * 查询自己的评论数量
+     */
+    @GetMapping("/commentCount/{id}")
+    public Result getCommentCount(@PathVariable Integer id){
+        try{
+            return Result.success(commentService.getCommentCountByUserId(id));
+        }catch (Exception e){
+            return Result.error(e.getMessage());
+        }
+    }
+
+    /**
+     * 查看自己的评论like数量
+     */
+    @GetMapping("/commentLikeCount/{id}")
+    public Result getCommentLikeCount(@PathVariable Integer id){
+        try{
+            return Result.success(commentService.getCommentLikeCountByUserId(id));
+        }catch (Exception e){
+            return Result.error(e.getMessage());
+        }
+    }
+
 }

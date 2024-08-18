@@ -18,9 +18,10 @@ public class AnimeController {
     /**
      * 粗略查询，展示在首页的新番粗略列表
      */
-    @GetMapping
+    @RequestMapping("/rough/all")
     public Result searchAllRoughly(){
         try {
+            System.out.println("已收到新番请求");
             return Result.success(animeService.roughSearchAll());
         }catch (Exception e){
             return Result.error(e.getMessage());
@@ -33,6 +34,7 @@ public class AnimeController {
     @GetMapping("/{year}/{season}")
     public Result searchAllRoughlyByYearOrSeason(@PathVariable Integer year, @PathVariable Integer season){
         try {
+            System.out.println(year+" "+season);
             return Result.success(animeService.roughSearchYearOrSeason(year, season));
         }catch (Exception e){
             return Result.error(e.getMessage());

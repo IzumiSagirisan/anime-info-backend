@@ -8,7 +8,11 @@ import com.situ.anime.utils.MD5Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
 
 
 /**
@@ -31,7 +35,6 @@ public class UserServiceImpl implements UserService {
         System.out.println("我是service层的user" + user.toString());
         // 首先检查是否存在相同的用户名
         if (!ObjectUtils.isEmpty(userMapper.selectByUsername(user.getUsername()))) {
-            // TODO: 前端需要做"即时"校验
             throw new Exception("用户名已被注册!");
         }
 
@@ -127,6 +130,27 @@ public class UserServiceImpl implements UserService {
         // 把完整的用户信息存入
         return 0;
     }
+
+    @Override
+    public List<User> searchAll() {
+        return userMapper.selectAll();
+    }
+
+    @Override
+    public List<User> searchManagerAndUser() {
+        return userMapper.selectManagerAndUser();
+    }
+
+    @Override
+    public Integer editAvatar(String fileAddress, Integer id) throws Exception {
+        return userMapper.updateAvatar(fileAddress, id);
+    }
+
+    @Override
+    public String searchAvatar(Integer id) {
+        return userMapper.selectAvatar(id);
+    };
+
 
     /**
      * 检查用户是否存在

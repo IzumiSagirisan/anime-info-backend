@@ -1,14 +1,12 @@
 package com.situ.anime.security.domain;
 
 import com.situ.anime.domain.entity.User;
-import com.situ.anime.domain.vo.UserVo;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author liangyunfei
@@ -20,10 +18,11 @@ import java.util.List;
 public class LoginUser implements UserDetails {
 
     private User user;
+    private Set<GrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return authorities;
     }
 
     @Override

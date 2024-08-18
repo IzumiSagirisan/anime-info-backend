@@ -16,8 +16,8 @@ public class CaptchaConfig {
     @Bean
     public Producer producer(){
         Properties properties = new Properties();
-        properties.setProperty("kaptcha.image.width", "150");
-        properties.setProperty("kaptcha.image.height", "50");
+//        properties.setProperty("kaptcha.image.width", "150");
+//        properties.setProperty("kaptcha.image.height", "50");
         properties.setProperty("kaptcha.textproducer.char.string", "0123456789");
         properties.setProperty("kaptcha.textproducer.char.length", "4");
 

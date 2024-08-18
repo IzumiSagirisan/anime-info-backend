@@ -4,9 +4,9 @@
 
     <insert id="insert">
         INSERT INTO tb_user
-        (avatar, username, password, phone, ip_address, email, user_group, status)
+        (avatar, username, password, phone, ip_address, email)
         VALUES
-        (#{avatar}, #{username}, #{password}, #{phone}, #{ipAddress}, #{email}, #{userGroup}, #{status})
+        (#{avatar}, #{username}, #{password}, #{phone}, #{ipAddress}, #{email})
     </insert>
     <select id="selectById" resultType="com.situ.anime.domain.entity.User">
         SELECT * FROM tb_user
@@ -23,6 +23,21 @@
     <select id="selectByUsername" resultType="com.situ.anime.domain.entity.User">
         SELECT * FROM tb_user
         WHERE username=#{username}
+    </select>
+    <select id="selectAll" resultType="com.situ.anime.domain.entity.User">
+        SELECT * FROM tb_user
+    </select>
+    <select id="selectRole" resultType="java.lang.Integer">
+        SELECT user_group FROM tb_user
+        WHERE id=#{id}
+    </select>
+    <select id="selectManagerAndUser" resultType="com.situ.anime.domain.entity.User">
+        SELECT * FROM tb_user
+        WHERE user_group=2 OR user_group=2 OR user_group=3
+    </select>
+    <select id="selectAvatar" resultType="java.lang.String">
+        SELECT avatar FROM tb_user
+        WHERE id=#{id}
     </select>
     <update id="update">
         UPDATE tb_user
@@ -49,6 +64,12 @@
                 status=#{status},
             </if>
         </set>
+        WHERE id=#{id}
+    </update>
+    <update id="updateAvatar">
+        UPDATE tb_user
+        SET avatar=#{filePath}
+        WHERE id=#{id}
     </update>
     <delete id="deleteUser">
         DELETE FROM tb_user

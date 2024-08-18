@@ -23,4 +23,7 @@ public interface AnimeMapper {
 
     // 更改新番信息
     Integer update(Anime anime);
+
+    // 删除新番
+    Integer delete(Integer id);
 }

@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class UserVo extends User {
     private String rePassword;
     private String oldPassword;
+    private String captcha;
 
     @Override
     public String toString() {

@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.situ.anime.mapper.StaffMapper">
+    <insert id="insert">
+        INSERT INTO tb_staff
+        (original_work, chief_supervisor, supervisor, series_composition, script, character_design,
+         chief_animation_director, art_director, art_design, color_design, dp, editing, audio_director, music_producer,
+         animation_studio, productions)
+        VALUES (#{original_work}, #{chief_supervisor}, #{supervisor}, #{series_composition}, #{script},
+                #{character_design}, #{chief_animation_director}, #{art_director}, #{art_design}, #{color_design},
+                #{dp}, #{editing}, #{audio_director}, #{music_producer}, #{animation_studio}, #{productions})
+    </insert>
+    <update id="update">
+        UPDATE tb_staff SET
+        <set>
+            <if test="originalWork!=null">
+                original_work=#{originalWork},
+            </if>
+            <if test="chiefSupervisor!=null">
+                chief_supervisor=#{chiefSupervisor},
+            </if>
+            <if test="supervisor!=null">
+                supervisor=#{supervisor},
+            </if>
+            <if test="seriesComposition!=null">
+                series_composition=#{seriesComposition},
+            </if>
+            <if test="script!=null">
+                script=#{script},
+            </if>
+            <if test="characterDesign!=null">
+                character_design=#{characterDesign},
+            </if>
+            <if test="chiefAnimationDirector!=null">
+                chief_animation_director=#{chiefAnimationDirector},
+            </if>
+            <if test="artDirector!=null">
+                art_director=#{artDirector},
+            </if>
+            <if test="artDesign!=null">
+                art_design=#{artDesign},
+            </if>
+            <if test="colorDesign!=null">
+                color_design=#{colorDesign},
+            </if>
+            <if test="dp!=null">
+                dp=#{dp},
+            </if>
+            <if test="editing!=null">
+                editing=#{editing},
+            </if>
+            <if test="audioDirector!=null">
+                audio_director=#{audioDirector},
+            </if>
+            <if test="musicProducer!=null">
+                music_producer=#{musicProducer},
+            </if>
+            <if test="animationStudio!=null">
+                animation_studio=#{animationStudio},
+            </if>
+            <if test="productions!=null">
+                productions=#{productions},
+            </if>
+        </set>
+        WHERE id=#{id}
+
+    </update>
+    <delete id="delete">
+        DELETE FROM tb_staff
+        WHERE id=#{id}
+    </delete>
 
     <select id="selectById" resultType="com.situ.anime.domain.entity.Staff">
         SELECT * FROM tb_staff

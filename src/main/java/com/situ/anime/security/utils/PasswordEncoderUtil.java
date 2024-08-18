@@ -2,10 +2,12 @@ package com.situ.anime.security.utils;
 
 import com.situ.anime.utils.MD5Util;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 /**
  * @author liangyunfei
  */
+@Component
 public class PasswordEncoderUtil implements PasswordEncoder {
 
     @Override

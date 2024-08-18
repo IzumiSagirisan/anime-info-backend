@@ -45,5 +45,8 @@ public class AnimeServiceImpl implements AnimeService {
         return animeMapper.update(anime);
     }
 
-
+    @Override
+    public Integer removeAnime(Integer id) throws Exception {
+        return animeMapper.delete(id);
+    }
 }

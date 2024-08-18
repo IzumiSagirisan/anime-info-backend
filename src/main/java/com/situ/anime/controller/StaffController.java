@@ -25,9 +25,12 @@ public class StaffController {
     @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         try{
+            System.out.println("已收到staff请求");
             return Result.success(staffService.searchById(id));
         }catch (Exception e){
             return Result.error(e.getMessage());
         }
     }
+
+
 }

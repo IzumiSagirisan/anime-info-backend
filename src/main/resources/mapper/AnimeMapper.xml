@@ -32,7 +32,12 @@
                 cast=#{cast},
             </if>
         </set>
+        WHERE id=#{id}
     </update>
+    <delete id="delete">
+        DELETE FROM tb_anime
+        WHERE id=#{id}
+    </delete>
     <select id="selectAllRough" resultType="com.situ.anime.domain.entity.Anime">
         SELECT * FROM tb_anime
     </select>
