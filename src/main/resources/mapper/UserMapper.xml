@@ -4,9 +4,9 @@
 
     <insert id="insert">
         INSERT INTO tb_user
-        (id, avatar, username, password, phone, ip_address, email, user_group, status, register_time)
+        (avatar, username, password, phone, ip_address, email, user_group, status)
         VALUES
-        (id=#{id}, avatar=#{avatar}, username=#{username}, password=#{password}, phone=#{phone}, ip_address=#{ipAddress}, email=#{email}, user_group=#{userGroup}, status=#{status}, register_time=#{registerTime})
+        (#{avatar}, #{username}, #{password}, #{phone}, #{ipAddress}, #{email}, #{userGroup}, #{status})
     </insert>
     <select id="selectById" resultType="com.situ.anime.domain.entity.User">
         SELECT * FROM tb_user
@@ -24,4 +24,36 @@
         SELECT * FROM tb_user
         WHERE username=#{username}
     </select>
+    <update id="update">
+        UPDATE tb_user
+        <set>
+            <if test="avatar!=null">
+                avatar=#{avatar},
+            </if>
+            <if test="password!=null">
+                password=#{password},
+            </if>
+            <if test="phone!=null and phone.length==11">
+                phone=#{phone},
+            </if>
+            <if test="ipAddress!=null">
+                ip_address=#{ipAddress},
+            </if>
+            <if test="email!=null and email.length>5">
+                email=#{email},
+            </if>
+            <if test="userGroup!=null">
+                user_group=#{userGroup},
+            </if>
+            <if test="status!=null">
+                status=#{status},
+            </if>
+        </set>
+    </update>
+    <delete id="deleteUser">
+        DELETE FROM tb_user
+        WHERE id= #{id}
+    </delete>
+
+
 </mapper>

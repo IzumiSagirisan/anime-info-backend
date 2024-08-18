@@ -18,9 +18,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserVo extends User {
     private String rePassword;
+    private String oldPassword;
 
     @Override
     public String toString() {
+        System.out.println("rePassword:"+rePassword+ " newPassword:" +oldPassword);
         return super.toString();
     }
 }

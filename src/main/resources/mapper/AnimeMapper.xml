@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.situ.anime.mapper.AnimeMapper">
+
+    <insert id="insert">
+        INSERT INTO tb_anime
+        (jap_name, chinese_name, cover, release_time, year, season, staff_id, cast)
+        VALUES (#{jap_name}, #{chinese_name}, #{cover}, #{release_time}, #{year}, #{season}, #{staff_id}, #{cast})
+    </insert>
+    <update id="update">
+        UPDATE tb_staff
+        <set>
+            <if test="japName!=null">
+                jap_name=#{japName},
+            </if>
+            <if test="chineseName!=null">
+                chinese_name=#{chineseName},
+            </if>
+            <if test="cover!=null">
+                cover=#{cover},
+            </if>
+            <if test="releaseTime!=null">
+                release_time=#{releaseTime},
+            </if>
+            <if test="year!=null">
+                year=#{year},
+            </if>
+            <if test="season!=null">
+                season=#{season},
+            </if>
+            <if test="cast!=null">
+                cast=#{cast},
+            </if>
+        </set>
+    </update>
+    <select id="selectAllRough" resultType="com.situ.anime.domain.entity.Anime">
+        SELECT * FROM tb_anime
+    </select>
+    <select id="selectAllRoughByYearOrSeason" resultType="com.situ.anime.domain.entity.Anime">
+        SELECT * FROM tb_anime
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="year != null and year != 0">
+                AND year = #{year}
+            </if>
+            <if test="season != null and season != 0">
+                AND season = #{season}
+            </if>
+        </trim>
+    </select>
+    <select id="selectById" resultType="com.situ.anime.domain.entity.Anime">
+        SELECT * FROM tb_anime
+        WHERE id=#{id}
+    </select>
+
+
+</mapper>

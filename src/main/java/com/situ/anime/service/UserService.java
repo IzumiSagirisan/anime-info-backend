@@ -8,4 +8,14 @@ import com.situ.anime.domain.vo.UserVo;
  */
 public interface UserService {
     Integer addUser(UserVo user) throws Exception;
+
+    User getUser(UserVo user) throws Exception;
+
+    Integer editUser(UserVo user) throws Exception;
+
+    Integer changePassword(UserVo user) throws Exception;
+
+    Integer removeUser(UserVo user) throws Exception;
+
+    Integer login(UserVo user);
 }

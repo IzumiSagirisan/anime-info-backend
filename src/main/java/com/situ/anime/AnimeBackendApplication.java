@@ -1,6 +1,5 @@
 package com.situ.anime;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,7 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AnimeBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AnimeBackendApplication.class, args);
+        Object run = SpringApplication.run(AnimeBackendApplication.class, args);
+        // Default
+        // System.out.println("这里只是用于查询springSecurity的过滤器链");
     }
 
 }
